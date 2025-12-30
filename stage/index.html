@@ -3,23 +3,16 @@
         <meta charset="UTF-8" />
         <style>
             body {
-                background: linear-gradient(
-                        135deg,
-                        white 0%,
-                        white 49%,
-                        black 49%,
-                        black 51%,
-                        white 51%,
-                        white 100%
-                    )
-                    repeat;
+                background-color: black;
                 background-size: 20px 20px;
             }
             canvas {
+                left: 100px;
+                position: absolute;
                 background-color: white;
             }
         </style>
-        <title>Wasm Example</title>
+        <title>RadioshackOS</title>
     </head>
     <script type="module">
         import init from "./target/packed.js";

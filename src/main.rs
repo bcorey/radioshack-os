@@ -10,7 +10,7 @@ fn main() {
             DefaultPlugins.set(WindowPlugin {
                 primary_window: Some(Window {
                     title: "RadioshackOS".into(),
-                    resolution: (800, 600).into(),
+                    resolution: (900, 700).into(),
                     present_mode: PresentMode::AutoVsync,
                     // Tells Wasm to resize the window according to the available canvas
                     fit_canvas_to_parent: false,
