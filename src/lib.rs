@@ -2,6 +2,7 @@ use bevy::{prelude::*, window::PrimaryWindow};
 use bevy_crt::CathodeSettings;
 
 pub mod input;
+pub mod plugins;
 
 /// Set up a simple 3D scene
 pub fn setup(
