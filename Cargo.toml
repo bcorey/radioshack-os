@@ -13,6 +13,8 @@ name = "radioshack-os"
 [dependencies]
 bevy_crt = { path = "../bevy_crt" }
 bevy = {version = "0.17" }
+# match version used by bevy
+smol_str = "0.2.2"
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
 uuid = { version = "1.13.1", default-features = false, features = ["js"] }
