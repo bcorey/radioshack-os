@@ -42,8 +42,8 @@ impl Volume {
     }
 }
 
-const VOLUME_UP: Key = Key::Character(SmolStr::new_inline("A"));
-const VOLUME_DOWN: Key = Key::Character(SmolStr::new_inline("B"));
+const VOLUME_UP: Key = Key::Character(SmolStr::new_inline("b"));
+const VOLUME_DOWN: Key = Key::Character(SmolStr::new_inline("a"));
 
 pub fn volume_input(key_input: Res<ButtonInput<Key>>, mut volume: ResMut<Volume>) {
     if key_input.just_pressed(VOLUME_UP) {
