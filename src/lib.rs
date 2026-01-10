@@ -73,7 +73,8 @@ pub fn setup(
 
     commands.spawn((
         SceneRoot(
-            asset_server.load(GltfAssetLabel::Scene(0).from_asset("models/memphis_arches.glb")),
+            asset_server
+                .load(GltfAssetLabel::Scene(0).from_asset("models/memphis-arches-coarse.gltf")),
         ),
         EdgeMaterialGltf {
             color: LinearRgba::new(0.0, 1.0, 0.0, 1.0),
