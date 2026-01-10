@@ -1,7 +1,8 @@
 use bevy::{prelude::*, window::PresentMode};
 use bevy_crt::CathodePlugin;
 use radioshack_os::{
-    input::navigation, plugins::volume::VolumePlugin, rotate, setup, update_settings,
+    input::navigation, materials::EdgeMaterialPlugin, plugins::volume::VolumePlugin, rotate, setup,
+    update_settings,
 };
 
 fn main() {
@@ -26,6 +27,7 @@ fn main() {
             }),
             CathodePlugin,
             VolumePlugin,
+            EdgeMaterialPlugin,
         ))
         .add_systems(Startup, setup)
         .add_systems(Update, (rotate, update_settings, navigation))

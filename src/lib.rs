@@ -5,7 +5,10 @@ use bevy::{
 };
 use bevy_crt::CathodeSettings;
 
+use crate::materials::{EdgeMaterial, prepare_mesh_for_edge_rendering};
+
 pub mod input;
+pub mod materials;
 pub mod plugins;
 
 /// Set up a simple 3D scene
@@ -14,9 +17,10 @@ pub fn setup(
     mut meshes: ResMut<Assets<Mesh>>,
     asset_server: Res<AssetServer>,
     mut materials: ResMut<Assets<StandardMaterial>>,
+    mut edge_materials: ResMut<Assets<EdgeMaterial>>,
     window: Single<&Window, With<PrimaryWindow>>,
 ) {
-    let unlit_material = materials.add(StandardMaterial {
+    let _unlit_material = materials.add(StandardMaterial {
         base_color: Color::srgb(1.0, 0.0, 0.0),
         unlit: true, // Unlit materials don't receive shadows
         ..default()
@@ -45,13 +49,24 @@ pub fn setup(
             ..default()
         },
     ));
-
+    let mut mesh = Cuboid {
+        half_size: Vec3::new(0.3, 0.3, 0.3),
+    }
+    .mesh()
+    .build();
+    prepare_mesh_for_edge_rendering(&mut mesh);
     // cube
     commands.spawn((
-        Mesh3d(meshes.add(Cuboid {
-            half_size: Vec3::new(0.3, 0.3, 0.3),
+        Mesh3d(meshes.add(mesh)),
+        MeshMaterial3d(edge_materials.add(EdgeMaterial {
+            color: LinearRgba {
+                red: 1.0,
+                green: 0.0,
+                blue: 0.0,
+                alpha: 1.0,
+            },
+            line_thickness: 3.0,
         })),
-        MeshMaterial3d(unlit_material),
         Transform::from_xyz(cube_location.x, cube_location.y, cube_location.z),
         Rotates,
     ));
