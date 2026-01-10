@@ -62,24 +62,6 @@ pub fn setup(
         ),
         Transform::from_xyz(1., 0., 1.),
     ));
-    commands.spawn((
-        SceneRoot(
-            asset_server.load(GltfAssetLabel::Scene(0).from_asset("models/memphis_arches.glb")),
-        ),
-        Transform::from_xyz(5., 0., 1.),
-    ));
-    commands.spawn((
-        SceneRoot(
-            asset_server.load(GltfAssetLabel::Scene(0).from_asset("models/memphis_arches.glb")),
-        ),
-        Transform::from_xyz(-3., 0., 1.),
-    ));
-    commands.spawn((
-        SceneRoot(
-            asset_server.load(GltfAssetLabel::Scene(0).from_asset("models/memphis_arches.glb")),
-        ),
-        Transform::from_xyz(-7., 0., 1.),
-    ));
 
     // gui
     commands
