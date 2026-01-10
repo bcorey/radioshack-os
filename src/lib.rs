@@ -1,4 +1,8 @@
-use bevy::{prelude::*, window::PrimaryWindow};
+use bevy::{
+    light::cluster::{ClusterConfig, ClusterZConfig},
+    prelude::*,
+    window::PrimaryWindow,
+};
 use bevy_crt::CathodeSettings;
 
 pub mod input;
@@ -12,6 +16,11 @@ pub fn setup(
     mut materials: ResMut<Assets<StandardMaterial>>,
     window: Single<&Window, With<PrimaryWindow>>,
 ) {
+    let unlit_material = materials.add(StandardMaterial {
+        base_color: Color::srgb(1.0, 0.0, 0.0),
+        unlit: true, // Unlit materials don't receive shadows
+        ..default()
+    });
     let cube_location = vec3(0.0, 1.0, 0.0);
     // camera
     commands.spawn((
@@ -23,6 +32,12 @@ pub fn setup(
         },
         // Add the setting to the camera.
         // This component is also used to determine on which camera to run the post processing effect.
+        ClusterConfig::FixedZ {
+            total: 1024, // Reduce from 4096
+            z_slices: 1, // For top-down games, use 1
+            dynamic_resizing: true,
+            z_config: ClusterZConfig::default(),
+        },
         CathodeSettings {
             crt_width: window.physical_width() as f32,
             crt_height: window.physical_height() as f32,
@@ -36,7 +51,7 @@ pub fn setup(
         Mesh3d(meshes.add(Cuboid {
             half_size: Vec3::new(0.3, 0.3, 0.3),
         })),
-        MeshMaterial3d(materials.add(Color::srgb(1., 1., 1.))),
+        MeshMaterial3d(unlit_material),
         Transform::from_xyz(cube_location.x, cube_location.y, cube_location.z),
         Rotates,
     ));
@@ -65,11 +80,6 @@ pub fn setup(
         ),
         Transform::from_xyz(-7., 0., 1.),
     ));
-    // light
-    commands.spawn(DirectionalLight {
-        illuminance: 1_000.,
-        ..default()
-    });
 
     // gui
     commands

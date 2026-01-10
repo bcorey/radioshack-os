@@ -55,7 +55,7 @@ pub fn volume_input(key_input: Res<ButtonInput<Key>>, mut volume: ResMut<Volume>
 }
 
 const VOLUME_INCREMENT_WIDTH: f32 = 20.0;
-const VOLUME_INCREMENT_MARGIN: f32 = 1.0;
+const VOLUME_INCREMENT_MARGIN: f32 = 2.0;
 const VOLUME_INCREMENT_HEIGHT: f32 = 100.0;
 const VOLUME_MAX: u8 = 20;
 
@@ -172,13 +172,13 @@ pub fn setup_volume_bar(mut commands: Commands) {
                             * (VOLUME_INCREMENT_WIDTH + 2.0 * VOLUME_INCREMENT_MARGIN),
                     ),
                     height: Val::Px(VOLUME_INCREMENT_HEIGHT + 2.0 * VOLUME_INCREMENT_MARGIN),
-                    padding: UiRect::all(Val::Px(4.0)),
+                    padding: UiRect::all(Val::Px(6.0)),
                     flex_direction: FlexDirection::Row,
                     justify_content: JustifyContent::Start,
                     box_sizing: BoxSizing::ContentBox,
                     ..default()
                 },
-                BackgroundColor(Color::srgb(0.0, 0.0, 1.0).into()),
+                BackgroundColor(Color::BLACK),
                 VolumeBar,
             ));
         });
