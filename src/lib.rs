@@ -5,7 +5,7 @@ use bevy::{
 };
 use bevy_crt::CathodeSettings;
 
-use crate::materials::{EdgeMaterial, prepare_mesh_for_edge_rendering};
+use crate::materials::{EdgeMaterial, EdgeMaterialGltf, prepare_mesh_for_edge_rendering};
 
 pub mod input;
 pub mod materials;
@@ -75,6 +75,10 @@ pub fn setup(
         SceneRoot(
             asset_server.load(GltfAssetLabel::Scene(0).from_asset("models/memphis_arches.glb")),
         ),
+        EdgeMaterialGltf {
+            color: LinearRgba::new(0.0, 0.0, 0.0, 1.0),
+            line_thickness: 3.0,
+        },
         Transform::from_xyz(1., 0., 1.),
     ));
 
