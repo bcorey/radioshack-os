@@ -11,11 +11,11 @@ impl Plugin for VolumePlugin {
             .add_systems(
                 Update,
                 (
-                    volume_input,
                     update_volume_bar.run_if(resource_changed::<Volume>),
                     hide_volume_bar,
                 ),
-            );
+            )
+            .add_systems(FixedUpdate, volume_input);
     }
 }
 
