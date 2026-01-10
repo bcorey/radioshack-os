@@ -31,7 +31,7 @@ pub fn setup(
         Camera3d::default(),
         Transform::from_translation(Vec3::new(3.0, 3.0, 8.0)).looking_at(cube_location, Vec3::Y),
         Camera {
-            clear_color: Color::WHITE.into(),
+            clear_color: Color::BLACK.into(),
             ..default()
         },
         // Add the setting to the camera.
@@ -76,7 +76,7 @@ pub fn setup(
             asset_server.load(GltfAssetLabel::Scene(0).from_asset("models/memphis_arches.glb")),
         ),
         EdgeMaterialGltf {
-            color: LinearRgba::new(0.0, 0.0, 0.0, 1.0),
+            color: LinearRgba::new(0.0, 1.0, 0.0, 1.0),
             line_thickness: 3.0,
         },
         Transform::from_xyz(1., 0., 1.),

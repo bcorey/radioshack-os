@@ -46,10 +46,10 @@ const VOLUME_UP: Key = Key::Character(SmolStr::new_inline("b"));
 const VOLUME_DOWN: Key = Key::Character(SmolStr::new_inline("a"));
 
 pub fn volume_input(key_input: Res<ButtonInput<Key>>, mut volume: ResMut<Volume>) {
-    if key_input.just_pressed(VOLUME_UP) {
+    if key_input.pressed(VOLUME_UP) {
         volume.up();
     }
-    if key_input.just_pressed(VOLUME_DOWN) {
+    if key_input.pressed(VOLUME_DOWN) {
         volume.down();
     }
 }
@@ -176,8 +176,10 @@ pub fn setup_volume_bar(mut commands: Commands) {
                     flex_direction: FlexDirection::Row,
                     justify_content: JustifyContent::Start,
                     box_sizing: BoxSizing::ContentBox,
+                    border: UiRect::all(Val::Px(2.0)),
                     ..default()
                 },
+                BorderColor::all(Color::srgb(1.0, 1.0, 1.0)),
                 BackgroundColor(Color::BLACK),
                 VolumeBar,
             ));
